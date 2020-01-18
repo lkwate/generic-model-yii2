@@ -1,0 +1,1 @@
+# generic-model-yii2
