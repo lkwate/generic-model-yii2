@@ -1,5 +1,7 @@
 <?php
-
+use yii\bootstrap\ActiveForm;
+use yii\bootstrap\Nav;
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use Yii;
@@ -12,24 +14,90 @@ $this->params['breadcrumbs'][] = ['label' => 'Generic Model', 'url' => ['index',
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="generic-model-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<style>
+    .sidenav {
+        margin-left: 2px;
+        margin-top: 25px;
+        height: 100%;
+        width: 160px;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        padding-top: 20px;
+    }
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->code, 'tableName' => get_class($model)::tableName()], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->code, 'tableName' => get_class($model)::tableName()], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
+    .sidenav a {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 18px;
+        color: #818181;
+        display: block;
+    }
+
+    .sidenav a:hover {
+        color: black;
+    }
+
+    .main {
+        margin-top: 30px;
+        margin-left: 160px;
+        /* Same as the width of the sidenav */
+        font-size: 15px;
+        /* Increased text to enable scrolling */
+        padding: 0px 10px;
+        /* fixe height */
+        height: 500px;
+        margin-bottom: 50px;
+
+
+        scroll-behavior: auto;
+    }
+
+    @media screen and (max-height: 450px) {
+        .sidenav {
+            padding-top: 15px;
+        }
+
+        .sidenav a {
+            font-size: 10px;
+        }
+    }
+</style>
+
+<div class="sidenav">
+    <?=
+        Yii::debug($treeMenu);
+        echo Nav::widget(
+            $treeMenu
+        )
+    ?>
+</div>
+
+<div class="main">
+    <div class="generic-model-view">
+
+        <h1><?= Html::encode($this->title) ?></h1>
+
+        <p>
+            <?= Html::a('Update', ['update', 'id' => $model->code, 'tableName' => get_class($model)::tableName()], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a('Delete', ['delete', 'id' => $model->code, 'tableName' => get_class($model)::tableName()], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => 'Are you sure you want to delete this item?',
+                    'method' => 'post',
+                ],
+            ]) ?>
+        </p>
+
+        <?= DetailView::widget([
+            'model' => $model,
+            'attributes' => get_class($model)::getTableSchema()->getColumnNames(),
         ]) ?>
-    </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => get_class($model)::getTableSchema()->getColumnNames(),
-    ]) ?>
+    </div>
 
 </div>

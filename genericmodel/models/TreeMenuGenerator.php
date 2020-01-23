@@ -9,7 +9,7 @@ class TreeMenuGenerator {
 
     public static function generateMenu() {
         $result = []; 
-        $result['options'] = ['class' => 'nav-pills'];
+        $result['options'] = ['class' => 'navbar-nav'];
         $result['items'] = [];
         $dic = [];
         GenericModel::genericInitModel('rubriqueParam');

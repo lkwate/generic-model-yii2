@@ -32,8 +32,9 @@ class GenericModelController extends Controller
     /**
      * display menu tree of differents rubrique
      */
-    public function actionWelcome() {
-        
+    public function actionWelcome()
+    {
+
         $treeMenu = TreeMenuGenerator::generateMenu();
         return $this->render('welcome', [
             'treeMenu' => $treeMenu,
@@ -46,6 +47,7 @@ class GenericModelController extends Controller
      */
     public function actionIndex($tableName)
     {
+        $treeMenu = TreeMenuGenerator::generateMenu();
         GenericModel::genericInitModel($tableName);
         GenericModelSearch::genericInitSearch();
         $searchModel = new GenericModelSearch();
@@ -53,10 +55,11 @@ class GenericModelController extends Controller
         $params = Yii::$app->request->queryParams;
         unset($params['tableName']);
         $dataProvider = $searchModel->search($params);
-
+        
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'treeMenu' => $treeMenu
         ]);
     }
 
@@ -68,9 +71,12 @@ class GenericModelController extends Controller
      */
     public function actionView($tableName, $id)
     {
+        $treeMenu = TreeMenuGenerator::generateMenu();
         GenericModel::genericInitModel($tableName);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'treeMenu' => $treeMenu
         ]);
     }
 
@@ -81,16 +87,18 @@ class GenericModelController extends Controller
      */
     public function actionCreate($tableName)
     {
-        
+        $treeMenu = TreeMenuGenerator::generateMenu();
         GenericModel::genericInitModel($tableName);
         $model = new GenericModel();
-    
+        Yii::debug($model);
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->code, 'tableName' => $tableName]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'treeMenu' => $treeMenu
         ]);
     }
 
@@ -103,6 +111,7 @@ class GenericModelController extends Controller
      */
     public function actionUpdate($tableName, $id)
     {
+        $treeMenu = TreeMenuGenerator::generateMenu();
         GenericModel::genericInitModel($tableName);
         $model = $this->findModel($id);
 
@@ -112,6 +121,7 @@ class GenericModelController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'treeMenu' => $treeMenu,
         ]);
     }
 
@@ -127,7 +137,7 @@ class GenericModelController extends Controller
         GenericModel::genericInitModel($tableName);
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index', 'tableName'=> $tableName]);
+        return $this->redirect(['index', 'tableName' => $tableName]);
     }
 
     /**

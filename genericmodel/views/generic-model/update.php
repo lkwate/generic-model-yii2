@@ -10,12 +10,19 @@ $this->params['breadcrumbs'][] = ['label' => 'Generic Model', 'url' => ['index',
 $this->params['breadcrumbs'][] = ['label' => $model->code, 'url' => ['view', 'id' => $model->code, 'tableName' => get_class($model)::tableName()]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
+<style>
+    .title {
+        margin-left: 160px;
+    }
+</style>
 <div class="generic-model-update">
-
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="title">
+        <h3><?= Html::encode($this->title) ?></h3>
+    </div>
 
     <?= $this->render('_form', [
         'model' => $model,
+        'treeMenu' => $treeMenu,
     ]) ?>
 
 </div>
