@@ -1,37 +1,26 @@
-## Welcome to GitHub Pages
+# generic-model-yii2
 
-You can use the [editor on GitHub](https://github.com/lkwate/generic-model-yii2/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## abstract
+Working on application designed to management the resources we commonly have some entities on which we want to perform some operations as CRUD. We often write a specific code for each entity, this will be critical and difficult to maintain for large-scale Applications. To solve this problem we extend Yii2 framework based on Php by automatically generated Graphical User Interface needed for CRUD (Create Read Update Delete) Operation. This drastically reduce the size of code and speed up the tracking and the fixing of bugs.
+## installation step
+* install php, yii2 (with gii module) on your computer
+* git clone https://github.com/lkwate/generic-model-yii2.git
+* create folder name **modules** in the root directory of your app
+* move generic-model in **modules** folder : mv /generic-model/genericmodel /path_of_target_directory
+* cd /root_directory_project
+* add this line in root/config/web.php to tell yii2 that you add module
+    **'modules' => [
+       'genericmodel' => [
+           'class' => 'app\modules\genericmodel\GenericModel'
+       ]
+   ],**
+After these step you can access to the home page of module with this link 
+**http://localhost:8080/index.php?r=genericmodel%2Fgeneric-model%2Fwelcome **
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/lkwate/generic-model-yii2/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+## use case
+The genericmodel you have installed requires some configurations to work well. 
+* execute the script in file /root_project/modules/genericmodel/scripts/Create.dll on your database
+* After execute the previous script in your database, go to the link **http://localhost:8080/index.php?r=genericmodel%2Fgeneric-model%2Fwelcome ** there will be a tree menu generated from table **rubrique** of your database
+At this step we can operate on the tables of Databases without writing any code line.
+...
+## 
