@@ -1,7 +1,7 @@
 # generic-model-yii2
 
 ## abstract
-Working on application designed to management the resources we commonly have some entities on which we want to perform some operations as CRUD. We often write a specific code for each entity, this will be critical and difficult to maintain for large-scale Applications. To solve this problem we extend Yii2 framework based on Php by automatically generated Graphical User Interface needed for CRUD (Create Read Update Delete) Operation. This drastically reduce the size of code and speed up the tracking and the fixing of bugs.
+Working on application designed to the management the resources we commonly have some entities on which we want to perform some operations like CRUD. We often write a specific code for each entity, this will be critical and difficult to maintain for large-scale Applications. To solve this problem we extend Yii2 framework based on Php by automatically generated Graphical User Interface needed for CRUD (Create Read Update Delete) Operation. This drastically reduce the size of code and speed up the tracking and the fixing of bugs.
 ## installation step
 * install php, yii2 (with gii module) on your computer
 * git clone https://github.com/lkwate/generic-model-yii2.git
